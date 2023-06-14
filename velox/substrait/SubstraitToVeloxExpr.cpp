@@ -108,7 +108,7 @@ void setLiteralValue(
     } else {
       VELOX_FAIL("Unexpected string literal");
     }
-  } else if (isDateType(vector->type())) {
+  } else if (vector->type()->isDate()) {
     auto dateVector = vector->template asFlatVector<int32_t>();
     dateVector->set(index, int(literal.date()));
   } else {
