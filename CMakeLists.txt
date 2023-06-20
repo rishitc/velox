@@ -247,6 +247,14 @@ set(CMAKE_POSITION_INDEPENDENT_CODE TRUE)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+# Required so cmake can use the correct version of the OpenSSL dependency
+execute_process (
+        COMMAND brew --prefix openssl@1.1
+        OUTPUT_VARIABLE OPENSSL_ROOT_DIR
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+set(ENV{OPENSSL_ROOT_DIR} ${OPENSSL_ROOT_DIR})
+
 execute_process(
   COMMAND
     bash -c
